@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="320" viewBox="0 0 480 320">
+  <defs>
+    <radialGradient id="cannon" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#eaffff"/><stop offset="0.5" stop-color="#4fd6ff"/><stop offset="1" stop-color="#1d6fa8"/>
+    </radialGradient>
+  </defs>
+  <g stroke="#12151d" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M0 320 L0 204 L112 140 L206 150 L232 204 L198 266 L128 320 Z" fill="#56657d"/>
+    <path d="M0 262 L178 196" fill="none" stroke-width="4"/>
+    <path d="M0 292 L168 236" fill="none" stroke-width="4"/>
+    <g fill="#c5d0de" stroke-width="2.5"><circle cx="28" cy="236" r="5"/><circle cx="62" cy="222" r="5"/><circle cx="96" cy="206" r="5"/><circle cx="26" cy="284" r="5"/><circle cx="66" cy="270" r="5"/></g>
+    <path d="M178 94 L116 14 L232 74 Z" fill="#dfe6ee"/>
+    <path d="M178 94 L142 52 L214 80 Z" fill="#d9432b" stroke-width="3"/>
+    <path d="M250 70 L262 20 L304 64 Z" fill="#c5d0de"/>
+    <path d="M236 152 L438 138 L442 206 L232 186 Z" fill="#141a28"/>
+    <circle cx="384" cy="170" r="26" fill="url(#cannon)"/>
+    <circle cx="384" cy="170" r="26" fill="none" stroke="#12151d" stroke-width="4"/>
+    <path d="M228 182 L440 204 L450 226 L330 240 L220 210 Z" fill="#6f7f98"/>
+    <g fill="#12151d" stroke="none"><rect x="262" y="200" width="30" height="6" rx="2"/><rect x="300" y="206" width="30" height="6" rx="2"/></g>
+    <path d="M140 134 L188 88 L302 62 L386 84 L444 110 L454 128 L438 142 L250 156 L184 154 Z" fill="#8fa0b8"/>
+    <path d="M188 88 L302 62 L300 108 L214 126 Z" fill="#a9b8cc" stroke-width="3.5"/>
+    <path d="M302 62 L386 84 L372 112 L300 108 Z" fill="#7a8aa3" stroke-width="3.5"/>
+    <path d="M314 92 L376 100 L366 120 L306 110 Z" fill="#ff3b30"/>
+    <path d="M322 98 L362 104" fill="none" stroke="#ffd0cc" stroke-width="3"/>
+    <g fill="#e8edf3" stroke-width="3.5"><path d="M300 154 L310 176 L322 152 Z"/><path d="M340 151 L350 172 L362 149 Z"/><path d="M380 148 L390 166 L400 146 Z"/></g>
+    <g fill="#12151d" stroke="none"><rect x="200" y="132" width="34" height="5" rx="2"/><rect x="204" y="142" width="34" height="5" rx="2"/></g>
+    <circle cx="432" cy="118" r="4" fill="#12151d" stroke="none"/>
+  </g>
+</svg>

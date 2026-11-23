@@ -1,0 +1,21 @@
+{
+  "name": "Ember Wyrm peeks in and roars",
+  "trigger": "idle",
+  "weight": 1,
+  "duration": 4300,
+  "layers": [
+    { "id": "wyrm", "src": "ember-wyrm.svg", "keys": [
+      { "t": 0,    "x": -0.30, "y": 1.20, "w": 0.70, "rot": 16 },
+      { "t": 1500, "x": -0.24, "y": 0.92, "w": 0.70, "rot": 10, "ease": "easeOut" },
+      { "t": 3000, "x": -0.25, "y": 0.91, "w": 0.70, "rot": 10, "ease": "linear" },
+      { "t": 4000, "x": -0.32, "y": 1.25, "w": 0.70, "rot": 16, "ease": "easeIn" }
+    ] }
+  ],
+  "effects": [
+    { "type": "shake", "start": 1700, "end": 2200, "amp": 0.007 },
+    { "type": "particles", "at": { "layer": "wyrm", "at": [0.93, 0.52] }, "start": 1700, "count": 45,
+      "kind": "ember", "angle": [-80, -5], "speed": [0.2, 0.6], "size": [0.006, 0.016], "life": [600, 1300] },
+    { "type": "particles", "at": { "layer": "wyrm", "at": [0.93, 0.52] }, "start": 1700, "end": 2300, "rate": 30,
+      "kind": "smoke", "colors": ["#4a4046"], "speed": [0.05, 0.15], "size": [0.02, 0.04], "life": [900, 1500], "angle": [-80, -10] }
+  ]
+}

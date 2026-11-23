@@ -1,0 +1,39 @@
+{
+  "name": "Wyrm vs Iron Wyrm beam clash",
+  "trigger": "songchange",
+  "weight": 1,
+  "duration": 4800,
+  "layers": [
+    { "id": "wyrm", "src": "ember-wyrm.svg", "keys": [
+      { "t": 0,    "x": -0.40, "y": 1.30, "w": 0.74, "rot": 14 },
+      { "t": 850,  "x": -0.26, "y": 0.74, "w": 0.74, "rot": 6, "ease": "backOut" },
+      { "t": 3000, "x": -0.28, "y": 0.72, "w": 0.74, "rot": 4, "ease": "linear" },
+      { "t": 3600, "x": -0.42, "y": 0.84, "w": 0.74, "rot": 18, "ease": "easeOut" },
+      { "t": 4400, "x": -0.50, "y": 1.35, "w": 0.74, "rot": 18, "ease": "easeIn" }
+    ] },
+    { "id": "iron", "src": "iron-wyrm.svg", "flip": true, "keys": [
+      { "t": 0,    "x": 1.40, "y": 1.30, "w": 0.74, "rot": -14 },
+      { "t": 950,  "x": 1.26, "y": 0.74, "w": 0.74, "rot": -6, "ease": "backOut" },
+      { "t": 3000, "x": 1.28, "y": 0.72, "w": 0.74, "rot": -4, "ease": "linear" },
+      { "t": 3600, "x": 1.42, "y": 0.84, "w": 0.74, "rot": -18, "ease": "easeOut" },
+      { "t": 4400, "x": 1.50, "y": 1.35, "w": 0.74, "rot": -18, "ease": "easeIn" }
+    ] }
+  ],
+  "effects": [
+    { "type": "shake", "start": 800, "end": 1150, "amp": 0.01 },
+    { "type": "beam", "from": { "layer": "wyrm", "at": [0.93, 0.52] }, "to": "record",
+      "start": 1300, "end": 3050, "grow": 450, "width": 0.05, "color": "#ff6a2b", "core": "#fff1c9" },
+    { "type": "beam", "from": { "layer": "iron", "at": [0.93, 0.53] }, "to": "record",
+      "start": 1300, "end": 3050, "grow": 450, "width": 0.05, "color": "#4fd6ff", "core": "#e6fbff" },
+    { "type": "particles", "at": "record", "start": 1750, "end": 3000, "rate": 170, "kind": "spark",
+      "colors": ["#ffffff", "#4fd6ff", "#ffb25a"], "speed": [0.3, 1.0], "size": [0.004, 0.011], "life": [250, 650], "spread": 0.03 },
+    { "type": "shockwave", "at": "record", "start": 1750, "end": 2250, "radius": 0.35, "color": "#ffffff" },
+    { "type": "shockwave", "at": "record", "start": 2400, "end": 2900, "radius": 0.5, "color": "#4fd6ff" },
+    { "type": "shake", "start": 1750, "end": 3000, "amp": 0.006 },
+    { "type": "flash", "start": 3000, "end": 3550, "color": "#ffffff", "alpha": 0.85 },
+    { "type": "shockwave", "at": "record", "start": 3000, "end": 3800, "radius": 1.3, "color": "#ffd9a0" },
+    { "type": "shockwave", "at": "record", "start": 3100, "end": 3800, "radius": 1.0, "color": "#4fd6ff" },
+    { "type": "shake", "start": 3000, "end": 3500, "amp": 0.035 }
+  ],
+  "record": { "burn": [2200, 2950], "destroyAt": 3000, "returnAt": 3950 }
+}

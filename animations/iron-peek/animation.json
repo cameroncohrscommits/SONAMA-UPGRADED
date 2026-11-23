@@ -1,0 +1,19 @@
+{
+  "name": "Iron Wyrm powers up on the right",
+  "trigger": "idle",
+  "weight": 1,
+  "duration": 4300,
+  "layers": [
+    { "id": "iron", "src": "iron-wyrm.svg", "flip": true, "keys": [
+      { "t": 0,    "x": 1.30, "y": 1.20, "w": 0.70, "rot": -16 },
+      { "t": 1500, "x": 1.24, "y": 0.92, "w": 0.70, "rot": -10, "ease": "easeOut" },
+      { "t": 3000, "x": 1.25, "y": 0.91, "w": 0.70, "rot": -10, "ease": "linear" },
+      { "t": 4000, "x": 1.32, "y": 1.25, "w": 0.70, "rot": -16, "ease": "easeIn" }
+    ] }
+  ],
+  "effects": [
+    { "type": "particles", "at": { "layer": "iron", "at": [0.8, 0.53] }, "start": 1600, "end": 2600, "rate": 50,
+      "kind": "spark", "colors": ["#e6fbff", "#4fd6ff"], "angle": [180, 260], "speed": [0.15, 0.5], "size": [0.004, 0.009], "life": [300, 700] },
+    { "type": "shockwave", "at": { "layer": "iron", "at": [0.8, 0.53] }, "start": 1600, "end": 2100, "radius": 0.25, "color": "#4fd6ff" }
+  ]
+}

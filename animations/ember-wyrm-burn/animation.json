@@ -1,0 +1,25 @@
+{
+  "name": "Ember Wyrm burns the record",
+  "trigger": "songchange",
+  "weight": 1,
+  "duration": 4300,
+  "layers": [
+    { "id": "wyrm", "src": "ember-wyrm.svg", "keys": [
+      { "t": 0,    "x": -0.34, "y": 1.25, "w": 0.80, "rot": 14 },
+      { "t": 900,  "x": -0.27, "y": 0.72, "w": 0.80, "rot": 6, "ease": "backOut" },
+      { "t": 2700, "x": -0.29, "y": 0.70, "w": 0.80, "rot": 4, "ease": "linear" },
+      { "t": 3500, "x": -0.40, "y": 1.30, "w": 0.80, "rot": 14, "ease": "easeIn" }
+    ] }
+  ],
+  "effects": [
+    { "type": "shake", "start": 820, "end": 1100, "amp": 0.012 },
+    { "type": "beam", "from": { "layer": "wyrm", "at": [0.93, 0.52] }, "to": "record",
+      "start": 1000, "end": 2600, "grow": 380, "width": 0.045, "color": "#ff6a2b", "core": "#fff1c9", "sparks": true },
+    { "type": "particles", "at": { "layer": "wyrm", "at": [0.93, 0.52] }, "start": 1000, "end": 2600, "rate": 40,
+      "kind": "ember", "size": [0.006, 0.014], "speed": [0.1, 0.35], "angle": [-70, 0], "life": [500, 1100] },
+    { "type": "flash", "start": 2550, "end": 2950, "color": "#ffb25a", "alpha": 0.45 },
+    { "type": "shockwave", "at": "record", "start": 2550, "end": 3150, "radius": 0.75, "color": "#ffb25a" },
+    { "type": "shake", "start": 2550, "end": 2950, "amp": 0.02 }
+  ],
+  "record": { "burn": [1150, 2500], "destroyAt": 2550, "returnAt": 3250 }
+}

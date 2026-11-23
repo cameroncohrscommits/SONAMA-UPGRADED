@@ -1,0 +1,68 @@
+/* Web version: phone layout, wallpaper layout, login and settings screens. */
+html, body { height: 100%; }
+body.web { position: fixed; inset: 0; overflow: hidden; overscroll-behavior: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+body.web #close { display: none; }
+#topbar { top: calc(env(safe-area-inset-top, 0px) + 8px); right: 12px; }
+.tabbar, #wpSwitch { display: none; }
+input, select, textarea { font-size: 16px; }            /* stops iOS from zooming in on focus */
+
+/* login and settings */
+#login, #sheet { position: fixed; inset: 0; z-index: 30; display: grid; place-items: start center; background: rgba(10,12,20,.94); backdrop-filter: blur(10px); padding: calc(env(safe-area-inset-top, 0px) + 24px) 18px 40px; overflow-y: auto; }
+#login[hidden], #sheet[hidden] { display: none; }
+.card { width: min(460px, 100%); background: var(--bg2); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+.card h2 { font-size: 24px; letter-spacing: -.01em; }
+.card h3 { font-size: 14px; color: var(--muted); font-weight: 600; margin-top: 6px; }
+.card p { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.card code { display: block; padding: 10px 12px; border-radius: 10px; background: rgba(0,0,0,.3); font-size: 13px; word-break: break-all; user-select: all; }
+.card label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--muted); }
+.card label.check { flex-direction: row; align-items: center; gap: 10px; color: var(--fg); font-size: 14px; }
+.card input[type=text], .card input[type=password], .card select, .card textarea { font: inherit; font-size: 16px; color: var(--fg); background: rgba(0,0,0,.3); border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 10px 12px; width: 100%; }
+.card input[type=color] { height: 40px; width: 70px; padding: 2px; background: none; border: 1px solid rgba(255,255,255,.14); border-radius: 10px; }
+.card input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--accent); }
+.card .row { display: flex; gap: 10px; }
+.card button { padding: 12px; border-radius: 12px; background: rgba(255,255,255,.1); color: var(--fg); font-size: 15px; flex: 1; }
+.card button.go { background: var(--accent); color: var(--bg); font-weight: 600; }
+.card header { display: flex; justify-content: space-between; align-items: center; }
+.card header button { flex: none; padding: 6px 14px; }
+.checks { display: flex; flex-direction: column; gap: 8px; }
+
+/* phone layout */
+@media (max-width: 800px) {
+  #stage { display: block; padding: 0; }
+  #clock { display: none; }
+  #center { position: absolute; inset: 0; justify-content: flex-start; gap: 1.8dvh; overflow: hidden;
+    padding: calc(env(safe-area-inset-top, 0px) + 52px) 18px calc(72px + env(safe-area-inset-bottom, 0px)); transition: padding .3s; }
+  #deck { --d: min(80vw, 42dvh); }
+  .now h1 { font-size: 22px; }
+  .now p { font-size: 14px; }
+  .transport { width: 100%; max-width: 420px; }
+  #library { display: flex; position: fixed; left: 0; right: 0; bottom: calc(58px + env(safe-area-inset-bottom, 0px)); height: 46dvh; z-index: 8;
+    border-radius: var(--radius) var(--radius) 0 0; background: rgba(18,20,30,.95); backdrop-filter: blur(14px);
+    transform: translateY(130%); transition: transform .3s; pointer-events: none; }
+  body.drawer #library { transform: none; pointer-events: auto; }
+  body.drawer #center { padding-bottom: calc(46dvh + 72px + env(safe-area-inset-bottom, 0px)); }
+  body.drawer #deck { --d: min(58vw, 24dvh); }
+  body.drawer .transport { display: none; }
+  #lyrics { display: none; position: fixed; inset: 0; z-index: 8; padding: calc(env(safe-area-inset-top, 0px) + 56px) 22px calc(70px + env(safe-area-inset-bottom, 0px)); background: rgba(14,16,24,.96); }
+  body.lyricsOpen #lyrics { display: block; }
+  .tabbar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 9; height: calc(58px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px); background: rgba(14,16,24,.92); backdrop-filter: blur(14px); border-top: 1px solid rgba(255,255,255,.1); }
+  .tabbar button { flex: 1; font-size: 14px; color: var(--muted); }
+  .tabbar button.on { color: var(--accent); font-weight: 600; }
+  #statList { grid-template-columns: 1fr; }
+  #fx { z-index: 6; }
+}
+
+/* wide screens in a normal browser tab: the desktop stage layout from stage.css applies. */
+
+/* wallpaper layout (?wallpaper=1): the left side stays clear for desktop icons */
+body.wallpaper #stage { grid-template-columns: 24vw minmax(0, 1fr) minmax(300px, 26vw); }
+body.wallpaper #center { grid-column: 2; grid-row: 1; }
+body.wallpaper #library { grid-column: 3; grid-row: 1; display: flex; }
+body.wallpaper #lyrics { grid-column: 3; grid-row: 1; display: none; }
+body.wallpaper.wpLyrics #lyrics { display: block; }
+body.wallpaper.wpLyrics #library { display: none; }
+body.wallpaper #wpSwitch { display: flex; position: absolute; top: 2.2vh; left: 50%; transform: translateX(-50%); gap: 8px; z-index: 7; }
+body.wallpaper .tabbar { display: none; }
+body.wallpaper #topbar { right: 2vw; }
+body.wallpaper #stage { padding-left: 1vw; }

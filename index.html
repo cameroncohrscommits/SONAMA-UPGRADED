@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sonoma</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1a1f2b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sonoma">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="stage.css">
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body class="web">
+<div id="bg"></div><div id="wash"></div>
+
+<main id="stage">
+  <aside id="library" aria-label="Songs">
+    <div class="lib-head">
+      <select id="playlist" aria-label="Playlist"><option value="">Loading playlists…</option></select>
+      <input id="search" type="search" placeholder="Search songs" spellcheck="false" aria-label="Search songs">
+    </div>
+    <ul id="tracks"></ul>
+    <p id="lib-note" hidden></p>
+  </aside>
+
+  <section id="center">
+    <div id="clock"><div id="time"></div><div id="date"></div></div>
+    <div id="deck">
+      <canvas id="viz"></canvas>
+      <div id="platter">
+        <div id="recwrap"><div id="record"><div id="label"></div></div></div>
+      </div>
+      <div id="arm"></div>
+    </div>
+    <div class="now">
+      <h1 id="title">Drop a song on the record</h1>
+      <p id="artists">Drag from the list, or double-click a song</p>
+      <p id="upnext" hidden></p>
+    </div>
+    <div class="transport">
+      <button id="shuffle" aria-label="Shuffle" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M16 4h5v5l-2-2-4.6 4.6-1.4-1.4L17.6 5.6zM3 7h4.2l9.3 10.3L19 15v5h-5l2-2L6.4 9H3zM3 17h3.4l2.2-2.4 1.4 1.5L7.3 19H3z"/></svg></button>
+      <button id="prev" aria-label="Previous or restart"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+      <button id="play" class="primary" aria-label="Play or pause">
+        <svg id="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="ic-pause" viewBox="0 0 24 24" hidden><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+      </button>
+      <button id="next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5l11 7-11 7z"/></svg></button>
+      <div class="seekwrap">
+        <input type="range" id="seek" min="0" max="1" value="0" aria-label="Seek">
+        <div class="times"><span id="t-pos">0:00</span><span id="t-dur">0:00</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lyrics" aria-label="Lyrics"><div id="lines"></div></section>
+</main>
+
+<div id="fx"></div><canvas id="fxc"></canvas>
+
+<div id="topbar">
+  <button id="setBtn" class="chip">Settings</button>
+  <button id="statsBtn" class="chip">Stats</button>
+  <button id="animBtn" class="chip">Animate</button>
+  <button id="close" class="chip" aria-label="Close stage">Esc</button>
+</div>
+
+<div id="stats" hidden>
+  <div class="statbox">
+    <header><h2>Your Spotify stats</h2><button id="statsClose" class="chip">Close</button></header>
+    <div class="tabs">
+      <button data-tab="tracks" class="on">Top songs</button>
+      <button data-tab="artists">Top artists</button>
+      <button data-tab="recent">Recently played</button>
+      <select id="range" aria-label="Time range"><option value="short_term">Last 4 weeks</option><option value="medium_term" selected>Last 6 months</option><option value="long_term">All time</option></select>
+    </div>
+    <p id="statSummary"></p>
+    <ol id="statList"></ol>
+    <p class="fine">Spotify doesn't share friend activity with apps, so friends can't be shown here.</p>
+  </div>
+</div>
+
+<div id="pin" hidden><div class="pinbox"><h2>Enter PIN</h2><input id="pinInput" type="password" inputmode="numeric" maxlength="8" placeholder="PIN" autocomplete="off"><div class="pinrow"><button id="pinGo" class="go">Unlock</button><button id="pinCancel">Cancel</button></div></div></div>
+<div id="wpSwitch"><button id="wpSongs" class="chip">Songs</button><button id="wpLyrics" class="chip">Lyrics</button></div>
+
+<nav class="tabbar" aria-label="Sections">
+  <button id="tabPlayer" class="on">Player</button>
+  <button id="tabSongs">Songs</button>
+  <button id="tabLyrics">Lyrics</button>
+</nav>
+
+<div id="login" hidden>
+  <div class="card">
+    <h2>Connect Spotify</h2>
+    <p>Create a free app at developer.spotify.com/dashboard, add this exact redirect address, then paste its Client ID below.</p>
+    <code id="redirect"></code>
+    <button id="copyRedirect">Copy address</button>
+    <label>Client ID <input type="text" id="clientId" placeholder="32-character ID" spellcheck="false" autocomplete="off"></label>
+    <button id="connect" class="go">Connect Spotify</button>
+    <h3>Already connected somewhere else?</h3>
+    <p>Paste a connection code from Settings on another device.</p>
+    <textarea id="importCode" rows="2" placeholder="Connection code" spellcheck="false"></textarea>
+    <button id="importBtn">Use code</button>
+  </div>
+</div>
+
+<div id="sheet" hidden>
+  <div class="card">
+    <header><h2>Settings</h2><button id="sheetClose">Done</button></header>
+    <label>Accent <select data-key="accentMode"><option value="album">Follow album art</option><option value="fixed">Fixed color</option></select></label>
+    <label>Fixed color <input type="color" data-key="accent"></label>
+    <label>Typeface <select data-key="font"><option value="sans">Clean sans</option><option value="serif">Serif</option><option value="mono">Monospace</option><option value="rounded">Rounded</option></select></label>
+    <label>Corner radius <input type="range" min="0" max="36" data-key="radius"></label>
+    <h3>Animations</h3>
+    <label class="check"><input type="checkbox" data-key="animEnabled"> Play animations</label>
+    <label>How often when the song changes <input type="range" min="0" max="100" data-key="animChance"></label>
+    <label>Idle animations after <select data-key="animIdleSeconds" data-num="1"><option value="0">Never</option><option value="30">30 seconds</option><option value="60">1 minute</option><option value="120">2 minutes</option><option value="300">5 minutes</option></select></label>
+    <div id="animList" class="checks"></div>
+    <h3>Background image</h3>
+    <div class="row"><button id="bgChoose">Choose image</button><button id="bgClear">Remove</button></div>
+    <input type="file" id="bgFile" accept="image/*" hidden>
+    <label>Darken <input type="range" min="0" max="80" data-key="bgDim"></label>
+    <label>Blur <input type="range" min="0" max="40" data-key="bgBlur"></label>
+    <h3>Connection</h3>
+    <p>To use the same Spotify login on another device, copy this code and paste it there. Keep it private.</p>
+    <textarea id="connCode" rows="2" readonly></textarea>
+    <div class="row"><button id="copyConn">Copy code</button><button id="disconnect">Disconnect Spotify</button></div>
+  </div>
+</div>
+
+<div id="toast" role="status" hidden></div>
+<script src="api-shim.js"></script>
+<script src="theme.js"></script>
+<script src="anim.js"></script>
+<script src="stage.js"></script>
+<script src="web.js"></script>
+</body>
+</html>
